@@ -1,0 +1,12 @@
+{
+    "exchange": {
+        "pair_whitelist": [
+            "BTC/USDT", "ETH/USDT", "SOL/USDT", "XRP/USDT", "DOGE/USDT",
+            "ADA/USDT", "AVAX/USDT", "LINK/USDT", "LTC/USDT", "DOT/USDT",
+            "TRX/USDT", "SUI/USDT", "NEAR/USDT", "APT/USDT", "ARB/USDT"
+        ]
+    },
+    "pairlists": [{"method": "StaticPairList"}],
+    "telegram": {"enabled": false},
+    "api_server": {"enabled": false}
+}
