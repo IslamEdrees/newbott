@@ -3,6 +3,15 @@ services:
     image: freqtradeorg/freqtrade:2026.9
     container_name: newbott
     restart: unless-stopped
+    # حدود الموارد: البوت ما ياخدش أكتر من كده حتى لو السيرفر عليه شغل تاني
+    cpus: ${BOT_CPUS:-0.5}
+    mem_limit: ${BOT_MEM:-700m}
+    memswap_limit: ${BOT_MEM:-700m}
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
     env_file: .env
     volumes:
       - ./user_data:/freqtrade/user_data
