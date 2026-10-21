@@ -3,6 +3,8 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 RANGE="${1:-$(date -d '-365 days' +%Y%m%d)-}"
+# الـ backtest محتاج رام أكتر من البوت الشغال (للتشغيلة دي بس)
+export BOT_MEM="${BT_MEM:-1500m}"
 CFG="--config /freqtrade/user_data/config.json --config /freqtrade/user_data/config-backtest.json"
 
 docker compose run --rm freqtrade download-data $CFG \
