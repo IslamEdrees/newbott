@@ -9,5 +9,5 @@ docker compose run --rm freqtrade download-data $CFG \
   --timeframes 5m 1h --timerange "$RANGE"
 
 docker compose run --rm freqtrade backtesting $CFG \
-  --strategy ScalpStrategy --timerange "$RANGE" \
+  --strategy "${STRATEGY:-SmartStrategy}" --timerange "$RANGE" \
   --breakdown month --cache none
