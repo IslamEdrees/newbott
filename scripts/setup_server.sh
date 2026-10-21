@@ -17,4 +17,6 @@ if [ ! -f .env ]; then
   echo "✅ اتعمل ملف .env — افتحه واكتب مفاتيح Binance و Telegram:  nano .env"
 fi
 mkdir -p user_data/logs
+# الكونتينر بيشتغل بمستخدم uid 1000، فلازم يقدر يكتب في user_data
+if [ "$(id -u)" -eq 0 ]; then chown -R 1000:1000 user_data; else sudo chown -R 1000:1000 user_data; fi
 echo "✅ السيرفر جاهز. بعد ما تملا .env شغّل:  docker compose up -d"

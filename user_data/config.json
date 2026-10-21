@@ -53,7 +53,8 @@
         "pair_blacklist": [
             "BNB/.*",
             ".*(USDC|FDUSD|TUSD|USDP|DAI|BUSD|EUR|AEUR|USD1|XUSD|PAXG)/.*",
-            ".*(UP|DOWN|BEAR|BULL)/.*"
+            ".*(UP|DOWN|BEAR|BULL)/.*",
+            "(CRCLB|SNDKB|SOXLB|SPCXB)/.*"
         ]
     },
     "pairlists": [

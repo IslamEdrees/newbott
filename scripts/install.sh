@@ -35,8 +35,7 @@ if [ ! -f .env ]; then
   ask MODE  "تشغيل بفلوس وهمية الأول؟ (y/n) [y]: "
   if [ "${MODE:-y}" = "n" ]; then DRY=false; DB=tradesv3.sqlite; else DRY=true; DB=tradesv3.dryrun.sqlite; fi
 
-  umask 077
-  cat > .env <<EOF
+  (umask 077; cat > .env <<EOF
 FREQTRADE__DRY_RUN=$DRY
 DB_FILE=$DB
 FREQTRADE__AVAILABLE_CAPITAL=$CAP
@@ -49,9 +48,12 @@ FREQTRADE__API_SERVER__PASSWORD=$(openssl rand -hex 16)
 FREQTRADE__API_SERVER__JWT_SECRET_KEY=$(openssl rand -hex 32)
 FREQTRADE__API_SERVER__WS_TOKEN=$(openssl rand -hex 24)
 EOF
+  )
 fi
 
 mkdir -p user_data/logs
+# الكونتينر بيشتغل بمستخدم uid 1000، فلازم يقدر يكتب في user_data
+$SUDO chown -R 1000:1000 user_data
 echo "🚀 تشغيل البوت..."
 $SUDO docker compose pull -q
 $SUDO docker compose up -d
