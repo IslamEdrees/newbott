@@ -30,6 +30,8 @@ if [ ! -f .env ]; then
   ask BSEC  "Binance API Secret: " silent
   ask TTOK  "Telegram Bot Token: " silent
   ask TCHAT "Telegram Chat ID: "
+  ask CAP   "البوت مسموحله يستخدم كام دولار USDT بالكتير؟ [50]: "
+  CAP="${CAP:-50}"
   ask MODE  "تشغيل بفلوس وهمية الأول؟ (y/n) [y]: "
   if [ "${MODE:-y}" = "n" ]; then DRY=false; DB=tradesv3.sqlite; else DRY=true; DB=tradesv3.dryrun.sqlite; fi
 
@@ -37,6 +39,8 @@ if [ ! -f .env ]; then
   cat > .env <<EOF
 FREQTRADE__DRY_RUN=$DRY
 DB_FILE=$DB
+FREQTRADE__AVAILABLE_CAPITAL=$CAP
+FREQTRADE__DRY_RUN_WALLET=$CAP
 FREQTRADE__EXCHANGE__KEY=$BKEY
 FREQTRADE__EXCHANGE__SECRET=$BSEC
 FREQTRADE__TELEGRAM__TOKEN=$TTOK
